@@ -22,7 +22,7 @@ class View(ft.UserControl):
         self._page.controls.append(self._title)
 
         #ROW with some controls
-        self.dropCorsi = ft.Dropdown(width=800, label="corso", options=[ft.dropdown.Option("Default"), ft.dropdown.Option("Linear")])
+        self.dropCorsi = ft.Dropdown(width=800, label="corso", options=self.controller.listaCorsi())
         self.btnIscritti = ft.ElevatedButton(width=150, text="Cerca iscritti", on_click=self._controller.handleCercaIscritti)
         row1 = ft.Row([self.dropCorsi, self.btnIscritti], alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row1)
