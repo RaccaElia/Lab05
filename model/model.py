@@ -14,3 +14,6 @@ class Model:
 
     def get_studente(self, matr):
         return self.studenteDao.get_studente(matr)
+
+    def get_corsi_studente(self, matr):
+        return self.studenteDao.get_corsi_studente(matr)

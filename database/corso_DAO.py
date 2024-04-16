@@ -10,7 +10,7 @@ class CorsoDao:
 
     def get_corsi(self):
         cnx = self.dbConnect.get_connection()
-        cursor = cnx.cursor(dictionary = True)
+        cursor = cnx.cursor(dictionary=True)
         query = """SELECT * FROM corso"""
         cursor.execute(query)
         corsi = []
@@ -24,7 +24,7 @@ class CorsoDao:
         cnx = self.dbConnect.get_connection()
         cursor = cnx.cursor(dictionary=True)
         query = """SELECT * FROM studente, iscrizione WHERE studente.matricola=iscrizione.matricola AND iscrizione.codins=%s"""
-        cursor.execute(query, (corso, ))
+        cursor.execute(query, (corso,))
         studenti = []
         for row in cursor:
             studenti.append(Studente(row["matricola"], row["cognome"], row["nome"], row["CDS"]))

@@ -46,7 +46,7 @@ class Controller:
         elif not self._view.txtMatricola.value.isnumeric():
             self._view.create_alert("la matricola è un numero a 6 cifre!")
             return
-        elif self._model.get_studente(self._view.txtMatricola.value) == None:
+        elif self._model.get_studente(self._view.txtMatricola.value) is None:
             self._view.create_alert("Nun ce sta nisciuno con sta matricola, controlla pirla")
             return
         else:
@@ -56,7 +56,22 @@ class Controller:
             self._view.update_page()
 
     def handleCercaCorsi(self, e):
-        pass
+        if self._view.txtMatricola.value is None or self._view.txtMatricola.value == "":
+            self._view.create_alert("Inserire la matricola, PIRLA!!!")
+            return
+        elif not self._view.txtMatricola.value.isnumeric():
+            self._view.create_alert("la matricola è un numero a 6 cifre!")
+            return
+        elif self._model.get_studente(int(self._view.txtMatricola.value)) is None:
+            self._view.create_alert("Nun ce sta nisciuno con sta matricola, controlla pirla")
+            return
+        else:
+            corsi = self._model.get_corsi_studente(int(self._view.txtMatricola.value))
+            self._view.txt_result.controls.clear()
+            self._view.txt_result.controls.append(ft.Text(f"I corsi a cui {self._view.txtMatricola.value} è iscritto sono: "))
+            for corso in corsi:
+                self._view.txt_result.controls.append(ft.Text(f"{corso}"))
+            self._view.update_page()
 
     def handleIscrivi(self, e):
         pass
